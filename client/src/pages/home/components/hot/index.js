@@ -26,8 +26,8 @@ function Hot(props) {
         {props?.houses?.map(item => (
           <div className='hot-lists-item' key={item.id} onClick={() => handleClick(item.id)}>
             <img className='img' alt='img' src={item?.imgs[0]?.url} />
-            <div className='title'>{item.title}</div>
-            <div className='info'>{item.info}</div>
+            <div className='title'>{item.name}</div>
+            <div className='info'>{item.address}</div>
             <div className='' style={{ textDecoration: 'line-through' }}>原价￥{item.price}</div>
             <div className='price'>现价￥{(item.price - money) > 0 ? (item.price - money) : 0}</div>
           </div>

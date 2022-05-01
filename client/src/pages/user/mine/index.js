@@ -29,8 +29,8 @@ function Hot(props) {
           {houses?.map(item => (
             <div className='hot-lists-item' key={item.id} onClick={() => handleClick(item.id)}>
               <img className='img' alt='img' src={item?.imgs[0]?.url} />
-              <div className='title'>{item.title}</div>
-              <div className='info'>{item.info}</div>
+              <div className='title'>{item.name}</div>
+              <div className='address'>{item.address}</div>
               <div className='price'>￥{item.price}</div>
             </div>
           ))}

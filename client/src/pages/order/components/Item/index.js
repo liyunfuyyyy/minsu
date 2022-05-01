@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Toast } from 'antd-mobile';
 import { Http, timer } from '@/utils';
-
+import {QRCodeSVG} from 'qrcode.react';
 export default function (props) {
   const [state, setState] = useState()
   const gift=localStorage.getItem('gift')
@@ -17,7 +17,12 @@ export default function (props) {
       window.location.reload();
     }
   }
-
+  const handleShowQr=()=>{
+    if(props.type===1){
+      return <QRCodeSVG value="https://www.baidu.com" />
+    }
+    return
+  }
   useEffect(() => {
 
   }, [])
@@ -34,7 +39,7 @@ export default function (props) {
   };
 
   return (
-    <div className='order-item'>
+    <div className='order-item' onClick={handleShowQr}>
       <img alt='order' src={props?.house?.imgs[0]?.url} />
       <div className='center'>
         <div className='title'>{props?.house?.name}</div>
@@ -44,6 +49,7 @@ export default function (props) {
       <div className='pay'>
         {renderPay()}
       </div>
+      {handleShowQr()}
     </div>
   )
 }

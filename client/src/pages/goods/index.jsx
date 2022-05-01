@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { List, ImagePicker, Toast, InputItem, Button, Calendar } from 'antd-mobile';
+import { List, ImagePicker,Picker, Toast, InputItem, Button, Calendar } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { Http } from '@/utils/index';
 import { history } from 'umi';
@@ -79,7 +79,7 @@ function Edit(props) {
   return (
     <div className='user-edit'>
       <List>
-        <ImagePicker files={files} selectable={files.length < 2} onChange={handleChange} />
+        <ImagePicker files={files} selectable={files.length < 3} onChange={handleChange} />
 
         <InputItem
           {...getFieldProps('name', {
@@ -106,21 +106,27 @@ function Edit(props) {
           地址：
         </InputItem>
         <InputItem
-          {...getFieldProps('price', {
-            rules: [{ required: true }],
+          {...getFieldProps('price',{
+            rules:[{required:true}]
           })}
-          placeholder='价格'
-        >
-          价格：
-        </InputItem>
-        <InputItem
-          {...getFieldProps('cityCode', {
-            rules: [{ required: true }],
-          })}
-          placeholder='城市'
-        >
-          城市：
-        </InputItem>
+          placeholder="0.00"
+          type="number"
+          extra="¥"
+        >价格</InputItem>
+        <Picker data={[{ label: '北京', value: '10001' },
+          { label: '成都', value: '10002' },
+          { label: '重庆', value: '10003' },
+          { label: '广州', value: '10004' },
+          { label: '杭州', value: '10005' },
+          { label: '南京', value: '10006' },
+          { label: '上海', value: '10007' },
+          { label: '深圳', value: '10008' },
+          { label: '天津', value: '10009' },
+          { label: '武汉', value: '10010' },
+          { label: '西安', value: '10011' },
+        ]} cols={1} {...getFieldProps('cityCode')}>
+          <List.Item arrow="horizontal">城市</List.Item>
+        </Picker>
         {/**可选时间 */}
         <div className='search'>
           <div className='search-time' onClick={handleDate}>

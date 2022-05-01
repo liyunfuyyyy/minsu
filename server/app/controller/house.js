@@ -23,7 +23,8 @@ class HouseController extends BaseController {
 
   async add() {
     const { ctx } = this;
-    const result = await ctx.service.house.add({ ...ctx.params() });
+    console.log(ctx.params());
+    const result = await ctx.service.house.add({ ...ctx.params(), cityCode: ctx.params('cityCode')[0] });
     console.log('请求成功');
     this.success(result);
   }

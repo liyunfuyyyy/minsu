@@ -11,7 +11,20 @@ class CommonsController extends BaseController {
       const result = {
         status: 200,
         data: {
-          citys: [[{ label: '杭州', value: '10001' }, { label: '苏州', value: '10002' }]],
+          citys: [[
+            { label: '北京', value: '10001' },
+            { label: '成都', value: '10002' },
+            { label: '重庆', value: '10003' },
+            { label: '广州', value: '10004' },
+            { label: '杭州', value: '10005' },
+            { label: '南京', value: '10006' },
+            { label: '上海', value: '10007' },
+            { label: '深圳', value: '10008' },
+            { label: '天津', value: '10009' },
+            { label: '武汉', value: '10010' },
+            { label: '西安', value: '10011' },
+
+          ]],
         },
       };
       // console.log(result)
