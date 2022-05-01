@@ -8,46 +8,61 @@ import { useHttpHook, useObserverHook } from '@/hooks';
 import { CommonEnum } from '@/enums';
 import { useLocation, Link, history } from 'umi';
 import { Header } from '@/components/index';
-import{Http} from '@/utils';
+import { Http } from '@/utils';
 
 import './index.less';
 import { Toast } from 'antd-mobile';
 
-export default function (props) {
-  const { house: { detail, getDetailAsync, getCommentsAsync, comments, reloadComments, reloadCommentsNum, showLoading, resetData, order, hasOrderAsync, addOrderAsync, delOrderAsync } } = useStoreHook();
+export default function(props) {
+  const {
+    house: {
+      detail,
+      getDetailAsync,
+      getCommentsAsync,
+      comments,
+      reloadComments,
+      reloadCommentsNum,
+      showLoading,
+      resetData,
+      order,
+      hasOrderAsync,
+      addOrderAsync,
+      delOrderAsync,
+    },
+  } = useStoreHook();
   const { query } = useLocation();
-  const mine=query?.mine
+  const mine = query?.mine;
   const handleBtnClick = (id) => {
     if (!id) {
       addOrderAsync({
-        id: query?.id
+        id: query?.id,
       });
     } else {
       delOrderAsync({
-        id: query?.id
+        id: query?.id,
       });
     }
-  }
-  const delHouse=async ()=>{
+  };
+  const delHouse = async () => {
     const result = await Http({
       url: '/house/del',
       body: {
-        id:query?.id
+        id: query?.id,
       },
     });
     if (result) {
-      console.log(result)
+      console.log(result);
       Toast.success('下架成功');
       history.push('/user/mine');
-    }else{
-      Toast.fail('下架失败')
+    } else {
+      Toast.fail('下架失败');
       history.push('/user/mine');
     }
-  }
-  const handleBtnDelClick=()=>{
-    delHouse()
-    console.log('删除房屋',query?.id)
-  }
+  };
+  const handleBtnDelClick = () => {
+    delHouse();
+    console.log('删除房屋', query?.id);
+  };
   /**
    * 1，监听loading是否展示出来
    * 2，出发reload，修改分页
@@ -63,29 +78,29 @@ export default function (props) {
 
   useEffect(() => {
     getDetailAsync({
-      id: query?.id
+      id: query?.id,
     });
-  }, [])
+  }, []);
 
   useEffect(() => {
     getCommentsAsync({
-      id: query?.id
+      id: query?.id,
     });
-  }, [reloadCommentsNum])
+  }, [reloadCommentsNum]);
 
   useEffect(() => {
     hasOrderAsync({
-      id: query?.id
+      id: query?.id,
     });
-  }, [])
+  }, []);
 
   useEffect(() => {
     return () => {
       resetData({
-        detail: {}
+        detail: {},
       });
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <div className='house-page'>
@@ -93,12 +108,13 @@ export default function (props) {
       {/**banner */}
       <Banner banner={detail?.banner} />
       {/**房屋信息 */}
-      {mine&&!order?<Info detail={detail?.info} mine={mine} order={order} btnClick={handleBtnDelClick} />:<Info detail={detail?.info} order={order} btnClick={handleBtnClick} /> }
+      {mine && !order ? <Info detail={detail?.info} mine={mine} order={order} btnClick={handleBtnDelClick} /> :
+        <Info detail={detail?.info} order={order} btnClick={handleBtnClick} />}
 
       {/**评论列表 */}
       <Lists lists={comments} showLoading={showLoading} />
       {/**footer */}
       <Footer />
     </div>
-  )
+  );
 }
