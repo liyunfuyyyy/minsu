@@ -14,7 +14,7 @@ module.exports = app => {
     updateTime: DATE,
   });
 
-  // 一个房子对应多个图片， hasMany
+  // 一个用户可以发布多个房子， hasMany
   User.associate = () => {
     app.model.User.hasMany(app.model.House, { foreignKey: 'userId' });
   };
