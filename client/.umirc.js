@@ -46,9 +46,25 @@ export default defineConfig({
           title: '我的',
           auth: true
         },
-        {path:'/user/mine',
-          component:'./user/mine',
-          title:'我的上架',
+        {
+          path: '/user/mine',
+          component: './user/mine',
+          title: '我的上架',
+        },
+        {
+          path: '/user/pro',
+          component: './user/pro',
+          title: '用户协议'
+        },
+        {
+          path: '/user/ques',
+          component: './user/ques',
+          title: '常见问题'
+        },
+        {
+          path: '/user/tel',
+          component: './user/tel',
+          title: '联系客服'
         },
         {
           path: '/user/edit',
