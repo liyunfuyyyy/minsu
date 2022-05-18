@@ -1,10 +1,7 @@
 'use strict';
 module.exports = options => {
-  // console.log('options', options)
   return async (ctx, next) => {
     const url = ctx.request.url;
-    // console.log('url', url);
-    // const user = ctx.session[ctx.username];
     const token = ctx.request.token;
     const username = await ctx.app.redis.get(ctx.username);
     const user = username ? username === token : username;
