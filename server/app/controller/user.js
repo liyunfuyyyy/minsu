@@ -18,7 +18,7 @@ class UserController extends BaseController {
 
   parseResult(ctx, result) {
     return {
-      ...ctx.helper.unPick(result.dataValues, [ 'password' ]),
+      ...ctx.helper.unPick(result.dataValues, ['password']),
       createTime: ctx.helper.timestamp(result.createTime),
     };
   }
@@ -38,7 +38,6 @@ class UserController extends BaseController {
       password: md5(parmas.password + app.config.salt),
       createTime: ctx.helper.time(),
     });
-    // console.log(result)
     if (result) {
       const token = await this.jwtSign({
         id: result.id,
@@ -68,6 +67,7 @@ class UserController extends BaseController {
         ...this.parseResult(ctx, user),
         token,
       });
+
     } else {
       this.error('该用户不存在');
     }

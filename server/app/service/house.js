@@ -5,16 +5,16 @@ class HouseService extends BaseService {
   commonAttr(app) {
     return {
       order: [
-        [ 'showCount', 'DESC' ],
+        ['showCount', 'DESC'],
       ],
       attributes: {
-        exclude: [ 'startTime', 'endTime', 'publishTime' ],
+        exclude: ['startTime', 'endTime', 'publishTime'],
       },
       include: [
         {
           model: app.model.Imgs,
           limit: 1,
-          attributes: [ 'url' ],
+          attributes: ['url'],
         },
       ],
     };
@@ -46,7 +46,9 @@ class HouseService extends BaseService {
     return this.run(async (ctx, app) => {
       const result = await ctx.model.House.findAll({
         ...this.commonAttr(app),
-        userId: id,
+        where: {
+          userId: id,
+        },
       });
       return result;
     });
@@ -73,13 +75,13 @@ class HouseService extends BaseService {
         startTime,
         endTime,
       });
-      console.log(imgs);
+      // console.log(imgs);
       // 添加图片
       for (const img of imgs) {
         const url = img.url;
         const houseId = id;
         const createTime = publishTime;
-        console.log(url, createTime);
+        // console.log(url, createTime);
         await ctx.model.Imgs.create({
           url,
           houseId,
@@ -128,11 +130,11 @@ class HouseService extends BaseService {
         include: [
           {
             model: app.model.Imgs,
-            attributes: [ 'url' ],
+            attributes: ['url'],
           },
           {
             model: app.model.User,
-            attributes: [ 'username', 'phone' ],
+            attributes: ['username', 'phone'],
           },
         ],
       });

@@ -10,7 +10,6 @@ class GiftController extends BaseController {
 
   async change() {
     const { ctx } = this;
-    // console.log(ctx.params('id'));
     const result = await ctx.service.gift.change(ctx.params('id'));
     this.success(result);
 
