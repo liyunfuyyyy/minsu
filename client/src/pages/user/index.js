@@ -48,6 +48,12 @@ export default function (props) {
       pathname: '/user/tel'
     })
   }
+
+  const handleToAbt = () => {
+    history.push({
+      pathname: '/user/abt'
+    })
+  }
   return (
     <ErrorBoundary>
       <div className='user-page'>
@@ -74,6 +80,9 @@ export default function (props) {
             </List.Item>
             <List.Item arrow='horizontal' onClick={handleToTel}>
               联系客服
+            </List.Item>
+            <List.Item arrow='horizontal' onClick={handleToAbt}>
+              关于
             </List.Item>
           </List>
         </div>

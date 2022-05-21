@@ -11,7 +11,6 @@ class UserController extends BaseController {
       id,
       username,
     }, app.config.jwt.secret);
-    // ctx.session[username] = 1;
     await app.redis.set(username, token, 'EX', app.config.redisExpire);
     return token;
   }

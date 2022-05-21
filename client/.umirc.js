@@ -67,6 +67,11 @@ export default defineConfig({
           title: '联系客服'
         },
         {
+          path: '/user/abt',
+          component: './user/abt',
+          title: '关于'
+        },
+        {
           path: '/user/edit',
           component: './user/edit',
           title: '设置用户'
