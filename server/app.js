@@ -16,12 +16,12 @@ module.exports = app => {
   };
 
   const mids = app.config.coreMiddleware;
-  app.config.coreMiddleware = [ ...mids, ...[
+  app.config.coreMiddleware = [...mids, ...[
     'interfaceLimit',
     'allowHosts',
     'notFound',
     'auth',
     'interfaceCache',
-  ] ];
+  ]];
   // console.log(app.config.coreMiddleware)
 };
